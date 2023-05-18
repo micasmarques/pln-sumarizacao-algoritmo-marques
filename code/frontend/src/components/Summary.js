@@ -51,14 +51,28 @@ function Summary() {
         value={text}
         onChange={(e) => setText(e.target.value)}
         label="Enter Text"
+        sx={{
+          '& textarea': {
+            fontFamily: 'inherit',
+            fontSize: 'inherit',
+            color: 'inherit'
+          }
+        }}
       />
+      <Typography variant="caption" gutterBottom>
+        Enter the text you want to summarize
+      </Typography>
       <TextField
         variant="outlined"
         type="number"
+        inputProps={{ min: 1 }}
         value={numSentences}
-        onChange={(e) => setNumSentences(e.target.value)}
+        onChange={(e) => setNumSentences(parseInt(e.target.value))}
         label="Number of Sentences"
       />
+      <Typography variant="caption" gutterBottom>
+        Specify the number of sentences in the summary
+      </Typography>
       <Button variant="contained" onClick={handleClick}>
         Summarize
       </Button>
@@ -76,8 +90,18 @@ function Summary() {
         <Typography variant="h6" component="div" gutterBottom>
           Summary
         </Typography>
-        <Typography variant="body1">{summary}</Typography>
+        <Typography variant="body1" className="summary-text">
+          {summary}
+        </Typography>
       </Box>
+      <style>
+        {`
+          .summary-text {
+            text-align: justify;
+            line-height: 1.5;
+          }
+        `}
+      </style>
     </Box>
   );
 }

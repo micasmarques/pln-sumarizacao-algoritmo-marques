@@ -69719,16 +69719,29 @@ function Summary() {
     onChange: function onChange(e) {
       return setText(e.target.value);
     },
-    label: "Enter Text"
-  }), /*#__PURE__*/_react.default.createElement(_TextField.default, {
+    label: "Enter Text",
+    sx: {
+      '& textarea': {
+        fontFamily: 'inherit',
+        fontSize: 'inherit',
+        color: 'inherit'
+      }
+    }
+  }), /*#__PURE__*/_react.default.createElement(_Typography.default, {
+    variant: "caption",
+    gutterBottom: true
+  }, "Enter the text you want to summarize"), /*#__PURE__*/_react.default.createElement(_TextField.default, {
     variant: "outlined",
     type: "number",
     value: numSentences,
     onChange: function onChange(e) {
-      return setNumSentences(e.target.value);
+      return setNumSentences(parseInt(e.target.value));
     },
     label: "Number of Sentences"
-  }), /*#__PURE__*/_react.default.createElement(_Button.default, {
+  }), /*#__PURE__*/_react.default.createElement(_Typography.default, {
+    variant: "caption",
+    gutterBottom: true
+  }, "Specify the number of sentences in the summary"), /*#__PURE__*/_react.default.createElement(_Button.default, {
     variant: "contained",
     onClick: handleClick
   }, "Summarize"), /*#__PURE__*/_react.default.createElement(_Box.default, {
@@ -69746,8 +69759,9 @@ function Summary() {
     component: "div",
     gutterBottom: true
   }, "Summary"), /*#__PURE__*/_react.default.createElement(_Typography.default, {
-    variant: "body1"
-  }, summary)));
+    variant: "body1",
+    className: "summary-text"
+  }, summary)), /*#__PURE__*/_react.default.createElement("style", null, "\n          .summary-text {\n            text-align: justify;\n            line-height: 1.5;\n          }\n        "));
 }
 var _default = Summary;
 exports.default = _default;
@@ -69809,7 +69823,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39455" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43755" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
