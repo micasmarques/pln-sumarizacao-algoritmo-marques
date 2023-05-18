@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import TextEditor from './TextEditor';
+import SummaryResult from './SummaryResult';
 
 function Summary() {
   const [text, setText] = useState('');
@@ -37,71 +38,26 @@ function Summary() {
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: '100vh',
-        gap: 2
+        gap: 2,
+        backgroundColor: '#f5f5f5',
+        padding: '20px',
       }}
     >
       <Typography variant="h4" component="div" gutterBottom>
         Text Summarization
       </Typography>
-      <TextField
-        variant="outlined"
-        multiline
-        rows={4}
-        fullWidth
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        label="Enter Text"
-        sx={{
-          '& textarea': {
-            fontFamily: 'inherit',
-            fontSize: 'inherit',
-            color: 'inherit'
-          }
-        }}
-      />
-      <Typography variant="caption" gutterBottom>
-        Enter the text you want to summarize
+      <Typography variant="body1" gutterBottom>
+        This is a web interface for the Marques Text Summarization algorithm. Enter the text you want to summarize and specify the number of sentences in the summary.
       </Typography>
-      <TextField
-        variant="outlined"
-        type="number"
-        inputProps={{ min: 1 }}
-        value={numSentences}
-        onChange={(e) => setNumSentences(parseInt(e.target.value))}
-        label="Number of Sentences"
-      />
-      <Typography variant="caption" gutterBottom>
-        Specify the number of sentences in the summary
-      </Typography>
-      <Button variant="contained" onClick={handleClick}>
+      <TextEditor text={text} setText={setText} />
+      <Button
+        variant="contained"
+        onClick={handleClick}
+        sx={{ backgroundColor: '#2196f3', color: 'white', fontWeight: 'bold' }}
+      >
         Summarize
       </Button>
-      <Box
-        sx={{
-          width: '100%',
-          maxWidth: '800px',
-          margin: '20px auto',
-          padding: '20px',
-          border: '1px solid #ccc',
-          borderRadius: '4px',
-          textAlign: 'center'
-        }}
-      >
-        <Typography variant="h6" component="div" gutterBottom>
-          Summary
-        </Typography>
-        <Typography variant="body1" className="summary-text">
-          {summary}
-        </Typography>
-      </Box>
-      <style>
-        {`
-          .summary-text {
-            text-align: justify;
-            line-height: 1.5;
-          }
-        `}
-      </style>
+      <SummaryResult summary={summary} />
     </Box>
   );
 }
