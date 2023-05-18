@@ -1,5 +1,4 @@
 # marques_algorithm.py
-
 from nltk.tokenize import word_tokenize
 from nltk.tokenize import sent_tokenize
 from nltk.corpus import stopwords
@@ -8,12 +7,13 @@ from nltk.probability import FreqDist
 from collections import defaultdict
 from heapq import nlargest
 
+
 def summarize(text, qtd_sentences):
     sentencas = sent_tokenize(text)
     palavras = word_tokenize(text.lower())
 
-    stopwords = set(stopwords.words('portuguese') + list(punctuation))
-    palavras_sem_stopwords = [palavra for palavra in palavras if palavra not in stopwords]
+    var_stopwords = set(stopwords.words('portuguese') + list(punctuation))
+    palavras_sem_stopwords = [palavra for palavra in palavras if palavra not in var_stopwords]
 
     frequencia = FreqDist(palavras_sem_stopwords)
 
