@@ -69680,7 +69680,6 @@ function Summary() {
     summary = _useState6[0],
     setSummary = _useState6[1];
   var handleClick = function handleClick() {
-    var parsedNumSentences = parseInt(numSentences, 10);
     fetch('http://localhost:5000/summarize', {
       method: 'POST',
       headers: {
@@ -69688,7 +69687,7 @@ function Summary() {
       },
       body: JSON.stringify({
         text: text,
-        num_sentences: parsedNumSentences
+        num_sentences: numSentences
       })
     }).then(function (response) {
       return response.json();
@@ -69726,15 +69725,29 @@ function Summary() {
     type: "number",
     value: numSentences,
     onChange: function onChange(e) {
-      return setNumSentences(parseInt(e.target.value));
+      return setNumSentences(e.target.value);
     },
     label: "Number of Sentences"
   }), /*#__PURE__*/_react.default.createElement(_Button.default, {
     variant: "contained",
     onClick: handleClick
-  }, "Summarize"), /*#__PURE__*/_react.default.createElement(_Typography.default, {
+  }, "Summarize"), /*#__PURE__*/_react.default.createElement(_Box.default, {
+    sx: {
+      width: '100%',
+      maxWidth: '800px',
+      margin: '20px auto',
+      padding: '20px',
+      border: '1px solid #ccc',
+      borderRadius: '4px',
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/_react.default.createElement(_Typography.default, {
+    variant: "h6",
+    component: "div",
+    gutterBottom: true
+  }, "Summary"), /*#__PURE__*/_react.default.createElement(_Typography.default, {
     variant: "body1"
-  }, summary));
+  }, summary)));
 }
 var _default = Summary;
 exports.default = _default;
@@ -69796,7 +69809,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39539" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39455" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

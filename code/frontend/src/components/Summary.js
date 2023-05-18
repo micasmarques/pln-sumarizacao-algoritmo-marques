@@ -10,7 +10,6 @@ function Summary() {
   const [summary, setSummary] = useState('');
 
   const handleClick = () => {
-    const parsedNumSentences = parseInt(numSentences, 10);
     fetch('http://localhost:5000/summarize', {
       method: 'POST',
       headers: {
@@ -18,7 +17,7 @@ function Summary() {
       },
       body: JSON.stringify({
         text,
-        num_sentences: parsedNumSentences
+        num_sentences: numSentences
       })
     })
       .then(response => response.json())
@@ -57,13 +56,28 @@ function Summary() {
         variant="outlined"
         type="number"
         value={numSentences}
-        onChange={(e) => setNumSentences(parseInt(e.target.value))}
+        onChange={(e) => setNumSentences(e.target.value)}
         label="Number of Sentences"
       />
       <Button variant="contained" onClick={handleClick}>
         Summarize
       </Button>
-      <Typography variant="body1">{summary}</Typography>
+      <Box
+        sx={{
+          width: '100%',
+          maxWidth: '800px',
+          margin: '20px auto',
+          padding: '20px',
+          border: '1px solid #ccc',
+          borderRadius: '4px',
+          textAlign: 'center'
+        }}
+      >
+        <Typography variant="h6" component="div" gutterBottom>
+          Summary
+        </Typography>
+        <Typography variant="body1">{summary}</Typography>
+      </Box>
     </Box>
   );
 }
