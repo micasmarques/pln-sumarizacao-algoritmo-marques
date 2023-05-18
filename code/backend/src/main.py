@@ -1,12 +1,17 @@
-# main.py
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+from .algorithm.marques_algorithm import summarize
 
-from marques_algorithm import summarize
+app = Flask(__name__)
+CORS(app)
 
-texto_artigo = '''
-A pandemia da doença pelo coronavírus 2019, COVID-19 ...
-... minimizar os efeitos adversos da restrição social prolongada.
-'''
+@app.route('/summarize', methods=['POST'])
+def summarize_text():
+    data = request.get_json()
+    text = data['text']
+    num_sentences = data['num_sentences']
+    summary = summarize(text, num_sentences)
+    return jsonify(summary=summary)
 
-summary = summarize(texto_artigo)
-for sentenca in summary:
-    print(sentenca)
+if __name__ == '__main__':
+    app.run(debug=True)

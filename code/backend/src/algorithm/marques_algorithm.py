@@ -8,7 +8,7 @@ from nltk.probability import FreqDist
 from collections import defaultdict
 from heapq import nlargest
 
-def summarize(text):
+def summarize(text, qtd_sentences):
     sentencas = sent_tokenize(text)
     palavras = word_tokenize(text.lower())
 
@@ -24,6 +24,6 @@ def summarize(text):
             if palavra in frequencia:
                 sentencas_importantes[i] += frequencia[palavra]
 
-    idx_sentencas_importantes = nlargest(5, sentencas_importantes, sentencas_importantes.get)
+    idx_sentencas_importantes = nlargest(qtd_sentences, sentencas_importantes, sentencas_importantes.get)
 
     return [sentencas[i] for i in sorted(idx_sentencas_importantes)]
