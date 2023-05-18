@@ -65,6 +65,7 @@ function Summary() {
       <TextField
         variant="outlined"
         type="number"
+        inputProps={{ min: 1 }}
         value={numSentences}
         onChange={(e) => setNumSentences(parseInt(e.target.value))}
         label="Number of Sentences"
